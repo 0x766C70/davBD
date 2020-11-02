@@ -7,7 +7,7 @@ myDate=$(date +"%m%d")
 for file in "$davDir"*
 	do
 		if [[ -f $file ]]; then
-			bd=$( sed -n 's/^BDAY://p'  $file | tr -d '-' | tr -d '\r' |  grep -o '....$' )
+			bd=$( sed -n 's/^BDAY//p'  $file | tr -d '-' | tr -d ';VALUE=DATE' | tr -d '\r' |  grep -o '....$' )
 			if [[ "$bd" != "" ]]; then
 				if [[ "$myDate" == "$bd" ]]; then
 					fn=$( sed -n 's/^FN://p'  $file )
